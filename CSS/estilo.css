@@ -1,0 +1,73 @@
+/*css externo - para que funcione é necessário fazer o link no HTML*/
+
+h1 {
+    background-color: rgba(0, 0, 255, 0.3);
+    padding: 5px;
+    font-family: cursive;
+    text-align: center;
+}
+
+p,
+li {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a {
+    background-color: #0b2555;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 15px;
+    border: solid crimson 2px;
+    margin: 30px;
+}
+
+/* Comportamemto do link a ser clicado*/
+a:link {
+    color: #6cff00;
+}
+
+/* Comportamento de link depois de ser clicado*/
+a:visited {
+    color: #000;
+    background-color: yellow;
+}
+
+/* Comportamento de passar sobre */
+A:hover {
+    background-color: chartreuse;
+    color: blue;
+}
+
+/* comportamento do linl quando está ativo*/
+a:active {
+    background-color: #fc0e0e;
+    color: blue;
+}
+
+/* trabalhando com Pseudo Elemento*/
+
+p::first-line{
+    color: red;
+    font-variant: small-caps;
+}
+P::first-letter{
+    color: blue;
+    font-size: xx-large;
+}
+
+H3::before{
+    content: url(/img/icone.png);
+}
+H3::before{
+    content: url(/img/icone.png);
+}
+ /*Este pseudo-elemento é específico para lista, pois modifica os "bulets ou marcadores da lista"*/
+::marker{
+    color: #6cff00;
+}
+/*Este pseudo-elemento modofica o que o usuário está selecionando*/
+::selection{
+    color: blue;
+    background-color: rgb(213,171,5);
+}
