@@ -1,0 +1,209 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    /* Fundo escuro */
+    color: #ccc;
+    min-height: 100vh;
+    /* Flexbox para o corpo principal */
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+.header {
+    background-color: #a30000;
+    /* Vermelho escuro, tema Demon Slayer */
+    color: rgb(255, 255, 255);
+    padding: 1rem 15px;
+    /* Flexbox */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    /* Removidas propriedades de texto para o elemento .logo */
+    font-weight: 800;
+    /* Flexbox para alinhar o ícone/imagem */
+    display: flex;
+    align-items: center;
+    /* O gap de 10px foi removido pois não há mais texto ao lado do logo */
+}
+
+/* Novo estilo para a imagem do logo */
+.logo-image {
+    height: 50px;
+    /* Altura da imagem do logo no header */
+    width: 50px;
+    transition: transform 0.3s ease;
+}
+
+.logo-image:hover {
+    transform: scale(1.05);
+    /* Efeito de zoom leve ao passar o mouse */
+}
+
+.nav-menu {
+    list-style: none;
+    /* Flexbox */
+    display: flex;
+    gap: 1.5rem;
+
+}
+
+.nav-link a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+    list-style: none;
+}
+
+/* Pseudo-classe :hover */
+.nav-link a:hover {
+    color: #ffe600b0;
+    /* Amarelo no hover */
+    border-bottom: 2px solid #ffe600ad;
+}
+
+/* Pseudo-classe :first-child */
+.nav-menu .nav-link:first-child a {
+    font-weight: bold;
+}
+
+/* MAIN CONTENT - Grid responsivo com Flexbox */
+.container {
+    padding: 3rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #ff00009b;
+    /* Vermelho vibrante */
+    font-size: 2.5rem;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    flex-direction:row;
+}
+
+.card-grid {
+    /* Flexbox para o layout da grade */
+    width: 100;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-items: center;
+}
+
+.cards {
+    /* Usando a classe que você definiu (.cards) */
+    background-color: rgb(187, 3, 3);
+    /* Fundo escuro para os cards */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    flex: 1 1 calc(5% - 10px);
+    /* 4 colunas em desktop */
+    min-width: 250px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+
+}
+
+/* Pseudo-classe :hover (Efeito de brilho/levantamento) */
+.cards:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(255, 0, 0, 0.3);
+    border-color: #ff0000;
+}
+
+.card-content {
+    padding: 1.5rem;
+    text-align: left;
+}
+
+.card-title {
+    margin-bottom: 0.5rem;
+    color: #f8f2e5;
+    /* Laranja para destaque */
+    font-size: 1.3rem;
+    border-bottom: 1px dashed #444;
+    padding-bottom: 5px;
+}
+
+.card-description {
+    font-size: 15px;
+    margin-bottom: 0;
+    color: #ffffff;
+}
+
+/* Imagens Responsivas (porcentagem) */
+.card.diversos {
+    width: 100px;
+    /* Adapta-se à largura do card */
+    height: 200px;
+    /* Altura fixa para manter a proporção */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* FOOTER */
+.footer {
+    background-color: #A30000;
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: auto;
+}
+
+/* Design Responsivo - Media Queries */
+
+/* Tablet (max-width: 1200px) */
+@media (max-width: 1200px) {
+    .cards {
+        flex: 1 1 calc(33.333% - 30px);
+        /* 3 colunas */
+    }
+}
+
+/* Tablet (max-width: 850px) */
+@media (max-width: 850px) {
+    .cards {
+        flex: 1 1 calc(50% - 30px);
+        /* 2 colunas */
+    }
+}
+
+/* Mobile (max-width: 600px) */
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .nav-menu {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .cards {
+        flex: 1 1 100%;
+        /* 1 coluna */
+        max-width: 100%;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}
