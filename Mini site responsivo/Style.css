@@ -1,0 +1,179 @@
+* {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #1a1a1a; /* Fundo escuro */
+            color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header e Footer */
+        .header {
+            background-color: #a30000; /* Vermelho escuro/sangue */
+            padding: 10px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        .logo {
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+
+        .logo-image {
+            height: 50px;
+            width: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+            border: 2px solid #ffcc00;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-image:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link a:hover {
+            color: #ffcc00; /* Amarelo no hover */
+            border-bottom: 2px solid #ffcc00;
+        }
+
+        .nav-menu .nav-link:first-child a {
+            font-weight: bold;
+        }
+
+        /* Conteúdo Principal */
+        .container {
+            padding: 2rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            flex-grow: 1;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: #ff0000; /* Vermelho mais vibrante */
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .cards {
+            background-color: #ff000082; /* Fundo do card escuro */
+            border-radius: 12px;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #444;
+        }
+
+        .cards:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(163, 0, 0, 0.7); /* Sombra de sangue no hover */
+            border-color: #ff4d4d;
+        }
+
+        .card-image {
+            width: 100%;
+            /* Forçar a imagem a ocupar 59% da altura, mas usando object-fit para manter proporção */
+            height: 360px; /* Altura fixa para as imagens */
+            display: block;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            text-align: left;
+        }
+
+        .card-title {
+            margin-bottom: 0.75rem;
+            color: #ffcc00; /* Título amarelo/dourado */
+            font-size: 1.4rem;
+            border-bottom: 2px solid #ffcc0030;
+            padding-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .card-description {
+            font-size: 16px;
+            color: #cccccc;
+            line-height: 1.5;
+        }
+
+        .footer {
+            font-size: 20px;
+            background-color: #a30000;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Media Queries para Responsividade */
+        @media (max-width: 850px) {
+            .header {
+                flex-direction: column;
+                gap: 0.75rem;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .nav-menu {
+                gap: 1.5rem;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+            .title p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
