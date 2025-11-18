@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Desafios DOM - Painel Corporativo</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            line-height: 1.6; 
+            background-color: #f4f7f6;
+        }
+        header, section {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
+        }
+        h1, h2 { 
+            margin-top: 0; 
+            color: #333;
+            border-bottom: 2px solid #005a9c;
+            padding-bottom: 5px;
+        }
+        ul { padding-left: 20px; }
+        
+        .funcionario {
+            list-style: none;
+            padding: 10px;
+            margin-bottom: 8px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+        .funcionario:hover {
+            background-color: #f0f0f0;
+        }
+        .funcionario-destaque {
+            background-color: #fffbe6;
+            border-left: 5px solid #f0ad4e;
+            font-weight: bold;
+        }
+
+        #form-rh label {
+            display: inline-block;
+            width: 100px;
+            margin-bottom: 10px;
+        }
+        #form-rh input {
+            padding: 8px;
+            width: 200px;
+            margin-right: 10px;
+        }
+        #form-rh button {
+            padding: 8px 15px;
+            background-color: #005a9c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .status-message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        .status-sucesso {
+            display: block;
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+        .status-erro {
+            display: block;
+            background-color: #f2dede;
+            color: #a94442;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 id="titulo-principal">Painel da Intranet</h1>
+        <p id="subtitulo">Visão geral da empresa.</p>
+    </header>
+
+    <main>
+        <section id="secao-comunicados">
+            <h2>Comunicados Urgentes</h2>
+            <div id="ultimo-comunicado">
+                <p>Nenhuma atualização no momento.</p>
+            </div>
+            <a href="#" id="link-comunicados">Ver todos os comunicados</a>
+        </section>
+
+        <section id="secao-funcionarios">
+            <h2>Diretório de Funcionários</h2>
+            <ul id="lista-funcionarios">
+                <li class="funcionario" data-id="101">Ana Silva (TI)</li>
+                <li class="funcionario" data-id="102">Bruno Costa (Marketing)</li>
+                <li class="funcionario" data-id="103">Carla Dias (RH)</li>
+            </ul>
+        </section>
+
+        <section id="secao-rh">
+            <h2>Formulário do RH: Adicionar Funcionário</h2>
+            <form id="form-rh">
+                <label for="input-nome">Nome:</label>
+                <input id="input-nome" type="text" placeholder="Nome completo">
+                <label for="input-depto">Depto:</label>
+                <input id="input-depto" type="text" placeholder="Departamento">
+                <button id="btn-adicionar" type="submit">Adicionar</button>
+            </form>
+            <div id="msg-status" class="status-message"></div>
+        </section>
+    </main>
+
+</body>
+
+<script>
+const h1 = document.getElementById("titulo-principal");
+h1.textContent = "Intranet Corp";
+
+const parágrafo = document.querySelector("#ultimo-comunicado p");
+parágrafo.textContent = "Manutenção agendada para sexta-feira às 18h.";
+parágrafo.style.color = "red";
+
+const funcionarios = document.querySelectorAll(".funcionario");
+funcionarios[1].classList.add("funcionario-destaque");
+
+const linkComunicados = document.getElementById("link-comunicados");
+linkComunicados.setAttribute("href", "#");
+linkComunicados.setAttribute("target", "_blank");
+
+const titulo = document.getElementById("titulo-principal");
+titulo.addEventListener("click", function() {
+    alert("Painel clicado!");
+});
+
+const novoFuncionario = document.createElement("li");
+novoFuncionario.textContent = "Daniel Moreira (Vendas)";
+novoFuncionario.classList.add("funcionario");
+novoFuncionario.setAttribute("data-id", "104");
+
+const listaFuncionarios = document.getElementById("lista-funcionarios");
+listaFuncionarios.appendChild(novoFuncionario);
+
+const formularioRH = document.getElementById("form-rh");
+const inputNome = document.getElementById("input-nome");
+const inputDepto = document.getElementById("input-depto");
+const msgStatus = document.getElementById("msg-status");
+
+formularioRH.addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    const nome = inputNome.value.trim();
+    const depto = inputDepto.value.trim();
+    
+    if (nome === "" || depto === "") {
+        msgStatus.textContent = "Erro: Preencha todos os campos.";
+        msgStatus.classList.add("status-erro");
+        msgStatus.classList.remove("status-sucesso");
+    } else {
+        const novoFunc = document.createElement("li");
+        novoFunc.textContent = nome + " (" + depto + ")";
+        novoFunc.classList.add("funcionario");
+        
+        listaFuncionarios.appendChild(novoFunc);
+        
+        inputNome.value = "";
+        inputDepto.value = "";
+        
+        msgStatus.textContent = "Funcionário adicionado!";
+        msgStatus.classList.add("status-sucesso");
+        msgStatus.classList.remove("status-erro");
+    }
+});
+
+listaFuncionarios.addEventListener("click", function(e) {
+    if (e.target.classList.contains("funcionario")) {
+        if (confirm("Remover este funcionário?")) {
+            e.target.remove();
+        }
+    }
+});
+
+</script>
+</html>
