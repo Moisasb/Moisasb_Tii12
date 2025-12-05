@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Aula 9 - Aprofundamento em DOM</title>
+    <style>
+        body { font-family: sans-serif; }
+
+        .container {
+            border: 2px solid blue;
+            padding: 10px;
+            margin-top: 15px;
+        }
+
+        .box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px;
+        }
+
+        .destaque {
+            background-color: yellow;
+            font-weight: bold;
+        }
+
+        #lista-delegacao li {
+            cursor: pointer;
+            padding: 5px;
+        }
+        #div-desafio {
+            padding: 16px;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Aula 6: Eventos Avançados</h1>
+
+    <div class="container">
+        <h2>Seção de Travessia</h2>
+        <div class="caixa">
+            <p>box 1</p>
+            <button class="botao-teste">Clique (para Travessia)</button>
+        </div>
+        <div class="caixa">
+            <p>box 2 (irmão)</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>Seção de Delegação (Clique nos itens)</h2>
+    <ul id="lista-delegacao">
+        <li>Item A</li>
+        <li>Item B</li>
+        <li>Item C</li>
+        <li>Item D</li>
+    </ul>
+
+    <hr>
+
+    <h2>Seção de preventDefault</h2>
+    <a id="link-teste" href="https://www.google.com">Link para o Google (será bloqueado)</a>
+    
+    <form id="meu-formulario">
+        <input type="text" placeholder="Formulário (será bloqueado)">
+        <button type="submit">Enviar (recarrega a página)</button>
+    </form>
+
+</body>
+
+<script>
+
+let botao = document.querySelector(".botao-teste");
+
+let paiDoBotao = botao.parentElement;
+
+let container = document.querySelector(".container");
+
+let caixa1 = document.querySelector(".box");
+
+
+// Desafio 1: Capture o parentElement, o próximo irmão e o irmão anterior
+// do li selecionado usando 'DOM traversal'
+
+let listaDelegacao = document.querySelector('#lista-delegacao');
+let itemSelecionado = listaDelegacao.querySelector('li:nth-child(2)');
+
+let elementoPai = itemSelecionado.parentElement;
+let proximoIrmao = itemSelecionado.nextElementSibling;
+let irmaoAnterior = itemSelecionado.previousElementSibling;
+
+console.log("Elemento Pai:", elementoPai);
+console.log("Próximo Irmão:", proximoIrmao);
+console.log("Irmão Anterior:", irmaoAnterior);
+
+
+// Desafio 2: Capture o botão, adicione addEventListener de click
+// e use parentElement para pegar a div.box e adicione a classe "destaque"
+
+let botaoTeste = document.querySelector(".botao-teste");
+
+botaoTeste.addEventListener("click", function() {
+    let divBox = this.parentElement;
+    divBox.classList.add("destaque");
+});
+
+
+// Desafio 3: Faça com que a "Seção de travessia" tenha a mesma funcionalidade
+// ao clicar nas caixas (usar delegação de eventos)
+
+let containerTravessia = document.querySelector(".container");
+
+containerTravessia.addEventListener("click", function(e) {
+    if (e.target.classList.contains("caixa")) {
+        e.target.classList.toggle("destaque");
+    }
+});
+
+
+// Seção de delegação com e.target
+
+let listaToda = document.querySelector("#lista-delegacao");
+
+listaToda.addEventListener("click", (e) => {
+    console.log("currentTarget (quem ouviu):", e.currentTarget);
+    console.log("target (quem foi clicado):", e.target);
+    
+    if (e.target.tagName === 'LI') {
+        e.target.classList.toggle("destaque");
+    }
+});
+
+
+// Bloqueando o link
+
+let link = document.querySelector("#link-teste");
+link.addEventListener("click", (e) => {
+    console.log("Evento de clique no link!");
+    e.preventDefault();
+    alert("Link bloqueado pelo JavaScript!");
+});
+
+
+// Desafio 4: Bloquear o recarregamento de página do formulário
+// e adicionar uma mensagem de envio
+
+let formulario = document.querySelector("#meu-formulario");
+
+formulario.addEventListener("submit", (e) => {
+    e.preventDefault();
+    
+    let mensagemDeEnvio = document.createElement("p");
+    mensagemDeEnvio.textContent = "Você enviou o formulário";
+    formulario.appendChild(mensagemDeEnvio);
+});
+
+</script>
+</html>

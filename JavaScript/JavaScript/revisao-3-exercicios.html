@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Exercícios: Automação com Loops (For)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            padding: 40px;
+            color: #333;
+        }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        p { font-size: 18px; margin-bottom: 10px; }
+        
+        .painel-dados {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+            color: #c7254e;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Exercícios: Automação e Repetição</h1>
+    <p>Abra o Console do navegador (F12) para realizar os exercícios.</p>
+
+    <div class="painel-dados">
+        <h3>Dados do Sistema</h3>
+        <p>Estes dados já estão carregados na memória (no script abaixo) para você usar nos exercícios 5, 6 e 7.</p>
+        <ul>
+            <li><strong>Lista de Departamentos:</strong> "RH", "Financeiro", "TI", "Logística", "Vendas"</li>
+            <li><strong>Faturamento (últimos 4 meses):</strong> 10000, 20000, 15000, 5000</li>
+        </ul>
+    </div>
+
+</body>
+
+<script>
+// =================================================================
+// DADOS PRÉ-CARREGADOS (Não altere aqui)
+// Use estas variáveis nos exercícios 5, 6 e 7.
+// =================================================================
+let departamentos = ["RH", "Financeiro", "TI", "Logística", "Vendas"];
+let faturamento = [10000, 20000, 15000, 5000];
+
+// =================================================================
+// LISTA DE EXERCÍCIOS: LOOPS (FOR)
+// Estrutura: for (inicio; condição; passo) { ... }
+// =================================================================
+
+
+// EXERCÍCIO 1: O Contador de Páginas (Básico)
+// Precisamos imprimir etiquetas para 5 páginas de um contrato.
+// 1. Crie um loop que comece em 1 e vá até 5 (incluindo o quinto loop).
+// 2. Imprima no console: "Imprimindo página " + i
+
+// Resposta 1:
+for (let i = 1; i <= 5; i++) {
+    console.log("Imprimindo página " + i);
+}
+
+
+// EXERCÍCIO 2: Histórico de Anos Fiscais (Início Diferente)
+// Precisamos gerar um relatório dos anos de 2018 até 2024.
+// 1. O loop deve começar (let i) em 2018.
+// 2. Deve ir até 2024.
+// 3. Imprima: "Relatório do ano " + i
+
+// Resposta 2:
+for (let i = 2018; i <= 2024; i++) {
+    console.log("Relatório do ano " + i);
+}
+
+
+// EXERCÍCIO 3: Verificação de Andares Pares (Passo Diferente)
+// O elevador de serviço só para nos andares pares. O prédio tem 10 andares.
+// 1. Comece do andar 0. Vá até o 10.
+// 2. O passo deve pular de 2 em 2 (i = i + 2).
+// 3. Imprima: "Parando no andar " + i
+
+// Resposta 3:
+for (let i = 0; i <= 10; i += 2) {
+    console.log("Parando no andar " + i);
+}
+
+
+// EXERCÍCIO 4: Contagem Regressiva para Lançamento (Decremento)
+// O sistema vai lançar o foguete em 5 segundos.
+// 1. Comece o contador em 5.
+// 2. A condição é 'enquanto o contador for maior ou igual a 0'.
+// 3. O resultado deve diminuir i em 1 (i--).
+// 4. Imprima: "Lançamento em... " + i
+
+// Resposta 4:
+for (let i = 0; i <= 10; i += 2) {
+    console.log("Parando no andar " + i);
+}
+
+
+// EXERCÍCIO 5: Listando Departamentos (Arrays)
+// Vamos mandar um e-mail para cada departamento da empresa.
+// Use a lista 'departamentos' criada lá no topo.
+// 1. O loop começa em 0.
+// 2. O limite deve ser o tamanho da lista (departamentos.length).
+// 3. Imprima: "Enviando memo para: " + departamentos[i]
+
+// Resposta 5:
+for (let i = 0; i < departamentos.length; i++) {
+    console.log("Enviando memo para: " + departamentos[i]);
+}
+
+
+// EXERCÍCIO 6: Buscando o "Financeiro" (Lógica dentro do Loop)
+// Precisamos saber em qual posição da lista está o "Financeiro".
+// 1. Faça o mesmo loop do exercício anterior (percorrendo a lista).
+// 2. DENTRO do loop, crie um IF.
+// 3. Se departamentos[i] for IGUAL (===) a "Financeiro":
+//    Imprima: "Financeiro encontrado na posição " + i
+
+// Resposta 6:
+for (let i = 0; i <= 10; i += 2) {
+    console.log("Parando no andar " + i);
+}
+
+
+// EXERCÍCIO 7: O Balanço Trimestral (Acumulador)
+// Precisamos somar todos os valores da lista 'faturamento'.
+// 1. Crie uma variável 'total = 0' ANTES do loop.
+// 2. Crie um loop percorrendo a lista 'faturamento'.
+// 3. DENTRO do loop, some o valor atual ao total (total = total + faturamento[i]).
+// 4. DEPOIS do loop (fora dele), imprima o valor do 'total'.
+
+// Resposta 7:
+let total = 0;
+for (let i = 0; i < faturamento.length; i++) {
+    total = total + faturamento[i];
+}
+console.log("Faturamento total dos últimos 4 meses: " + total);
+
+
+</script>
+</html>
