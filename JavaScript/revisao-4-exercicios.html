@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Exercícios DOM: O Crachá</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9ecef;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* O Objeto do Exercício: Um Crachá */
+        #cracha-virtual {
+            background-color: white;
+            width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            border-top: 10px solid #0056b3; /* Cor padrão */
+        }
+
+        .cabecalho-cracha {
+            background-color: #f1f3f5;
+            padding: 10px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #868e96;
+            text-transform: uppercase;
+        }
+
+        #foto-participante {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-top: 20px;
+            border: 5px solid #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            object-fit: cover;
+        }
+
+        .info-container { padding: 20px; }
+        
+        h2.nome { margin: 10px 0 5px 0; color: #333; }
+        p.empresa { color: #777; margin: 0; font-weight: 500; }
+
+        #status-acesso {
+            margin-top: 20px;
+            padding: 8px;
+            background-color: #ffec99; /* Amarelo (Pendente) */
+            color: #856404;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Área de Controle (Simulando um sistema externo) */
+        .painel-controle {
+            margin-top: 40px;
+            padding: 20px;
+            border: 1px dashed #aaa;
+            background: #fff;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cracha-virtual">
+        <div class="cabecalho-cracha">Tech Summit 2025</div>
+        
+        <img id="foto-participante" src="kanroji.jpg" alt="Foto">
+        
+        <div class="info-container">
+            <h2 class="nome">Nome do Participante</h2>
+            <p class="empresa">Empresa não informada</p>
+            
+            <div id="status-acesso">PENDENTE</div>
+        </div>
+    </div>
+
+    <div class="painel-controle">
+        <label>Alterar Empresa:</label><br>
+        <input id="input-nova-empresa" type="text" value="Google Brasil">
+    </div>
+
+</body>
+
+<script>
+// =================================================================
+// LISTA DE EXERCÍCIOS: DOM
+// INSTRUÇÕES:
+// Escreva o código JavaScript abaixo de cada comentário "Resposta".
+// Abra o Console (F12) para conferir se as mudanças aconteceram no crachá.
+// =================================================================
+
+
+// EXERCÍCIO 1: Seleção Simples e Texto
+// O nome do participante está genérico.
+// 1. Selecione o elemento <h2> que possui a classe ".nome".
+// 2. Altere o texto dele (.textContent) para "Mariana Costa".
+
+// Resposta 1:
+const nomeParticipante = document.querySelector('.nome')
+nomeParticipante.textContent = 'Mariana Costa'
+console.log(nomeParticipante.textContent)
+
+// EXERCÍCIO 2: Mudando a Foto (Atributos)
+// A foto atual é um quadrado cinza (placeholder). Vamos colocar uma foto real.
+// 1. Selecione a imagem pelo id "foto-participante".
+// 2. Altere o atributo .src dela para este link: 
+//    "https://reqres.in/img/faces/4-image.jpg"
+
+// Resposta 2:
+const fotoParticipante = document.getElementById('foto-participante')
+fotoParticipante.src = 'kanroji.jpg'
+console.log(fotoParticipante.src)
+
+// EXERCÍCIO 3: Alterando Estilos Diretos
+// O cabeçalho do crachá (a barra cinza no topo com o texto "Tech Summit") está apagado.
+// 1. Selecione a div com a classe ".cabecalho-cracha".
+// 2. Mude a cor de fundo (.style.backgroundColor) para "black".
+// 3. Mude a cor do texto (.style.color) para "white".
+
+// Resposta 3:
+const cabecalhoCracha = document.querySelector('.cabecalho-cracha')
+cabecalhoCracha.style.backgroundColor = 'black'
+cabecalhoCracha.style.color = 'white'
+console.log(cabecalhoCracha.style.backgroundColor)
+console.log(cabecalhoCracha.style.color)
+
+
+// EXERCÍCIO 4: Status de Acesso (Estilo e Texto)
+// A Mariana foi confirmada no evento. Precisamos atualizar o status visualmente.
+// 1. Selecione a div de status pelo id "status-acesso".
+// 2. Mude o texto para "AUTORIZADO".
+// 3. Mude a cor de fundo para "#d4edda" (verde claro).
+// 4. Mude a cor do texto para "#155724" (verde escuro).
+
+// Resposta 4:
+const statusAcesso = document.getElementById('status-acesso')
+statusAcesso.textContent = 'AUTORIZADO'
+statusAcesso.style.backgroundColor = '#d4edda'
+statusAcesso.style.color = '#155724'
+console.log(statusAcesso.textContent)
+console.log(statusAcesso.style.backgroundColor)
+console.log(statusAcesso.style.color)
+
+
+// EXERCÍCIO 5: Navegação por Parentes (Subindo a Árvore)
+// Queremos mudar a cor da linha grossa no topo do crachá (atualmente azul).
+// DESAFIO: Não selecione o crachá diretamente pelo ID.
+// 1. Use a variável do status que você usou no exercício anterior (ou selecione-o novamente).
+// 2. Navegue para o elemento PAI dele. E depois para o PAI do PAI (o avô).
+//    (Dica: status -> info-container -> cracha-virtual).
+// 3. Nesse elemento "avô", altere a borda superior (.style.borderTopColor) para "green".
+
+// Resposta 5:
+const crachaVirtual = statusAcesso.parentElement.parentElement
+crachaVirtual.style.borderTopColor = 'green'
+console.log(crachaVirtual.style.borderTopColor)
+
+
+// EXERCÍCIO 6: Busca Otimizada (Descendo a Árvore)
+// Vamos selecionar a empresa, mas procurando APENAS dentro da área de informações.
+// 1. Selecione a div ".info-container" e guarde numa variável.
+// 2. Usando essa variável (ex: variavel.querySelector), busque o parágrafo com classe ".empresa".
+// 3. Mude o texto desse parágrafo para "Microsoft".
+
+// Resposta 6:
+const infoContainer = document.querySelector('.info-container')
+const empresaParagrafo = infoContainer.querySelector('.empresa')
+empresaParagrafo.textContent = 'Microsoft'
+console.log(empresaParagrafo.textContent)
+
+
+// EXERCÍCIO 7: Pegando valor de um Input
+// Existe um campo de texto (input) no final da página com o valor "Google Brasil".
+// Vamos pegar esse texto e jogar dentro do crachá automaticamente.
+// 1. Selecione o input pelo id "input-nova-empresa".
+// 2. Selecione o parágrafo da empresa no crachá (classe ".empresa").
+// 3. Faça com que o texto do parágrafo receba o valor (.value) do input.
+
+// Resposta 7:
+const inputNovaEmpresa = document.getElementById('input-nova-empresa')
+const empresaCracha = document.querySelector('.empresa')
+empresaCracha.textContent = inputNovaEmpresa.value
+console.log(empresaCracha.textContent)
+
+</script>
+</html>

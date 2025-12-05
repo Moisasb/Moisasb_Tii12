@@ -204,22 +204,22 @@ listaToda.addEventListener("click", (e) => {
 // qual <li> EXATO foi clicado.
 
 // e uma logica semelhante a da secao de eventos mas para explicar o conceito de Delegação de Eventos
- let listaPai = document.querySelector("#lista-delegacao");
+ let listaPai = document.querySelector("#lista-delegacao")
 
- listaPai.addEventListener("click", (e) => {
-    // 1. O 'listener' está no <ul>
-    
-    // 2. Verificamos se o 'e.target' (quem foi clicado) é um <li>
-    // (Isso evita que o clique no espaço vazio do <ul> faça algo)
-    
-     if (e.target.tagName === 'LI') {
-        // 3. Sim, foi um <li>! Agora podemos agir nele.
-         console.log("Um item da lista foi clicado:", e.target.textContent);
-        
-        // 4. Vamos aplicar a classe 'destaque' SÓ nele:
-         e.target.classList.toggle("destaque");
-     }
- });
+    listaPai.addEventListener("click", (e) => {
+        // 1. O 'listener' está no <ul>
+
+        // 2. Verificamos se o 'e.target' (quem foi clicado) é um <li>
+        // (Isso evita que o clique no espaço vazio do <ul> faça algo)
+
+        if (e.target.tagName === 'LI') {
+            // 3. Sim, foi um <li>! Agora podemos agir nele.
+            console.log("Um item da lista foi clicado:".target.textContent)
+
+            // 4. Vamos aplicar a classe 'destaque' SÓ nele:
+            e.target.classList.toggle("destaque");
+        }
+    })
 
 // Vantagens:
 // 1. Performance: Só 1 'listener' para 100, 1000, ou 1 milhão de itens.
